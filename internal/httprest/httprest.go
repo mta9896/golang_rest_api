@@ -6,7 +6,7 @@ import(
 	"io"
 	"fmt"
 	"github.com/gorilla/mux"
-	"mta9896/restapi/pkg/crud"
+	"mta9896/restapi/internal/crud"
 )
 
 func HandleRequests() {

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"mta9896/restapi/pkg/gin_rest"
+	"mta9896/restapi/internal/ginrest"
 )
 
 

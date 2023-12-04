@@ -3,7 +3,7 @@ package ginrest
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
-	"mta9896/restapi/pkg/crud"
+	"mta9896/restapi/internal/crud"
 	"github.com/go-playground/validator/v10"
 )
 
