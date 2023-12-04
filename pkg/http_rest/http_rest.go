@@ -1,4 +1,4 @@
-package httprestapi
+package httprest
 
 import(
 	"encoding/json"
@@ -6,7 +6,7 @@ import(
 	"io"
 	"fmt"
 	"github.com/gorilla/mux"
-	"mta9896/golang_rest_api/pkg/crud"
+	"mta9896/restapi/pkg/crud"
 )
 
 func HandleRequests() {

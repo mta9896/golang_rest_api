@@ -1,9 +1,9 @@
-package ginrestapi
+package ginrest
 
 import (
 	"net/http"
 	"github.com/gin-gonic/gin"
-	"mta9896/golang_rest_api/pkg/crud"
+	"mta9896/restapi/pkg/crud"
 	"github.com/go-playground/validator/v10"
 )
 

@@ -1,4 +1,4 @@
-module mta9896/golang_rest_api
+module mta9896/restapi
 
 go 1.21.4
 
