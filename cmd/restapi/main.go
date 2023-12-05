@@ -6,8 +6,7 @@ import (
 
 
 func main() {
-
-	ginrest.HandleRequests()	
+	ginrest.Initialize()
 }
 
 
