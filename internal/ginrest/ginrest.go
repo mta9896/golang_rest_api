@@ -1,9 +1,12 @@
 package ginrest
 
 import (
-	"net/http"
-	"github.com/gin-gonic/gin"
+	_ "fmt"
+	_ "log"
 	"mta9896/restapi/internal/crud"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 )
 
