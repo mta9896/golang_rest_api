@@ -1,12 +1,14 @@
 package httprest
 
-import(
+import (
 	"encoding/json"
-	"net/http"
-	"io"
 	"fmt"
+	"io"
+	"mta9896/restapi/internal/database"
+	"mta9896/restapi/internal/entity"
+	"net/http"
+
 	"github.com/gorilla/mux"
-	"mta9896/restapi/internal/crud"
 )
 
 func HandleRequests() {
@@ -26,7 +28,10 @@ func HandleRequests() {
 
 
 func getItemsHandler(w http.ResponseWriter, r *http.Request) {
-	response, err := json.Marshal(crud.List())
+	items, _ := database.FetchAllItems()
+
+
+	response, err := json.Marshal(items)
 
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -34,7 +39,12 @@ func getItemsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write(response)
+	_ , err = w.Write(response)
+
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
 }
 
 func createItemHandler(w http.ResponseWriter, r *http.Request) {
@@ -44,18 +54,30 @@ func createItemHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var newItem crud.Item
+	var newItem entity.Item
 	err = json.Unmarshal(body, &newItem)
 	if err != nil {
 		http.Error(w, "Bad Request - Invalid JSON", http.StatusBadRequest)
 		return
 	}
 
-	crud.Create(newItem)
+	err = database.InsertItem(newItem)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	response, err := json.Marshal(newItem)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write(response)
+	_, err = w.Write(response)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
 }

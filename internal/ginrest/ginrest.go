@@ -24,7 +24,11 @@ func initRouter() {
 	router := gin.Default()
 	router.GET("/items", GetItems)
 	router.POST("/items", CreateItem)
-	router.Run("localhost:8080")
+	err := router.Run("localhost:8080")
+	if err != nil {
+		log.Println("Error: " , err.Error())
+		return
+	}
 }
 
 func initValidator() {

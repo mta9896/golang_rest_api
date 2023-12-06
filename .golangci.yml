@@ -1,0 +1,24 @@
+linters-settings:
+  golint:
+    enabled: true
+  govet:
+    enabled: true
+  gocyclo:
+    enabled: true
+    min-complexity: 10
+  unused:
+    enabled: true
+  prealloc:
+    enabled: true
+  gosimple:
+    enabled: true
+  staticcheck:
+    enabled: true
+  goimports:
+    enabled: true
+
+run:
+  concurrency: 4
+  issues-exit-code: 1
+  tests: true
+  timeout: 5m0s
